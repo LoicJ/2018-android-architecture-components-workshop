@@ -9,10 +9,7 @@ import fr.ekito.myweatherapp.view.detail.DetailPresenter
 import fr.ekito.myweatherapp.view.splash.SplashContract
 import fr.ekito.myweatherapp.view.splash.SplashPresenter
 import fr.ekito.myweatherapp.view.splash.SplashViewModel
-import fr.ekito.myweatherapp.view.weather.WeatherHeaderContract
-import fr.ekito.myweatherapp.view.weather.WeatherHeaderPresenter
-import fr.ekito.myweatherapp.view.weather.WeatherListContract
-import fr.ekito.myweatherapp.view.weather.WeatherListPresenter
+import fr.ekito.myweatherapp.view.weather.*
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
 
@@ -28,14 +25,18 @@ val weatherAppModule = applicationContext {
     // declare SplashViewModel for Splash View
     viewModel { SplashViewModel(get(), get()) }
 
-    // Presenter for ResultHeader View
-    factory {
-        WeatherHeaderPresenter(get(), get()) as WeatherHeaderContract.Presenter
-    }
-    // Presenter for ResultList View
-    factory {
-        WeatherListPresenter(get(), get()) as WeatherListContract.Presenter
-    }
+//    // Presenter for ResultHeader View
+//    factory {
+//        WeatherHeaderPresenter(get(), get()) as WeatherHeaderContract.Presenter
+//    }
+
+//    // Presenter for ResultList View
+//    factory {
+//        WeatherListPresenter(get(), get()) as WeatherListContract.Presenter
+//    }
+
+    //WeatherViewModel that will be shared
+    viewModel { WeatherViewModel(get(), get()) }
 
 //    // Presenter for Detail View
 //    factory {

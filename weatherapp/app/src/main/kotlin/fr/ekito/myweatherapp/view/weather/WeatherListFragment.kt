@@ -13,11 +13,13 @@ import fr.ekito.myweatherapp.view.weather.list.WeatherItem
 import fr.ekito.myweatherapp.view.weather.list.WeatherListAdapter
 import kotlinx.android.synthetic.main.fragment_result_list.*
 import org.jetbrains.anko.startActivity
+import org.koin.android.architecture.ext.sharedViewModel
 import org.koin.android.ext.android.inject
 
-class WeatherListFragment : Fragment(), WeatherListContract.View {
+class WeatherListFragment : Fragment() {
 
-    override val presenter by inject<WeatherListContract.Presenter>()
+    private val viewModel by sharedViewModel<WeatherViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,18 +56,8 @@ class WeatherListFragment : Fragment(), WeatherListContract.View {
         adapter.notifyDataSetChanged()
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.subscribe(this)
-        presenter.getWeatherList()
-    }
 
-    override fun onPause() {
-        presenter.unSubscribe()
-        super.onPause()
-    }
-
-    override fun showError(error: Throwable) {
-        (activity as? WeatherActivity)?.showError(error)
+     fun showError(error: Throwable) {
+//        (activity as? WeatherActivity)?.showError(error)
     }
 }
