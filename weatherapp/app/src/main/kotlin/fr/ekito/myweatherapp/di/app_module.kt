@@ -8,10 +8,12 @@ import fr.ekito.myweatherapp.view.detail.DetailContract
 import fr.ekito.myweatherapp.view.detail.DetailPresenter
 import fr.ekito.myweatherapp.view.splash.SplashContract
 import fr.ekito.myweatherapp.view.splash.SplashPresenter
+import fr.ekito.myweatherapp.view.splash.SplashViewModel
 import fr.ekito.myweatherapp.view.weather.WeatherHeaderContract
 import fr.ekito.myweatherapp.view.weather.WeatherHeaderPresenter
 import fr.ekito.myweatherapp.view.weather.WeatherListContract
 import fr.ekito.myweatherapp.view.weather.WeatherListPresenter
+import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
 
 /**
@@ -19,9 +21,12 @@ import org.koin.dsl.module.applicationContext
  */
 val weatherAppModule = applicationContext {
     // Presenter for Search View
-    factory {
-        SplashPresenter(get(), get()) as SplashContract.Presenter
-    }
+//    factory {
+//        SplashPresenter(get(), get()) as SplashContract.Presenter
+//    }
+
+    // declare SplashViewModel for Splash View
+    viewModel { SplashViewModel(get(), get()) }
 
     // Presenter for ResultHeader View
     factory {
@@ -32,10 +37,10 @@ val weatherAppModule = applicationContext {
         WeatherListPresenter(get(), get()) as WeatherListContract.Presenter
     }
 
-    // Presenter for Detail View
-    factory {
-        DetailPresenter(get(), get()) as DetailContract.Presenter
-    }
+//    // Presenter for Detail View
+//    factory {
+//        DetailPresenter(get(), get()) as DetailContract.Presenter
+//    }
 
     // Weather Data Repository
     bean { WeatherRepositoryImpl(get()) as WeatherRepository }
